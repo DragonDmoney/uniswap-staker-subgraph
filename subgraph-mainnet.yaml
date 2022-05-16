@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: NFTPositionsManager
-    network: mainnet
+    network: matic
     source:
       address: '0xC36442b4a4522E871399CD717aBDD847Ab11FE88'
       abi: NFTPositionsManager
-      startBlock: 12804494 # when first ewit-usdc nft was created
+      startBlock: 26167250 # when first ewit-usdc nft was created
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -39,11 +39,11 @@ dataSources:
       file: ./src/nft-positions-manager-mapping.ts
   - kind: ethereum/contract
     name: UniV3Staker
-    network: mainnet
+    network: matic
     source:
-      address: '0x9213d5c6d737Fc2744db9d67037fE90D76Cb0F77'
+      address: '0x80b7859967d0e40a0cb87560ea120dcb93c56230'
       abi: UniV3Staker
-      startBlock: 12874861
+      startBlock: 27908070
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

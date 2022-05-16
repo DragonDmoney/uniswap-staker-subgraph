@@ -53,6 +53,7 @@ export function handleTokenStaked(event: TokenStaked): void {
   if (entity != null) {
     entity.staked = true;
     entity.liquidity = event.params.liquidity;
+    entity.state="Staked"
     entity.save();
   }
 }
@@ -61,6 +62,7 @@ export function handleTokenUnstaked(event: TokenUnstaked): void {
   let entity = Position.load(event.params.tokenId.toHex());
   if (entity != null) {
     entity.staked = false;
+    entity.state="Deposited"
     entity.save();
   }
 }
@@ -70,6 +72,12 @@ export function handleDepositTransferred(event: DepositTransferred): void {
   if (entity != null) {
     entity.oldOwner = event.params.oldOwner;
     entity.owner = event.params.newOwner;
+    if (event.params.newOwner=="0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+      event.state="Deposited"
+    }
+    if (event.params.oldOwner == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+      event.state=""
+    }
     entity.save();
   }
 }

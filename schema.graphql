@@ -17,4 +17,5 @@ type Position @entity {
   oldOwner: Bytes
   liquidity: BigInt!
   approved: Bytes
+  state: String
 }
