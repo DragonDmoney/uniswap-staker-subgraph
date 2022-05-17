@@ -48,14 +48,16 @@ export function handleIncentiveEnded(event: IncentiveEnded): void {
 
 export function handleRewardClaimed(event: RewardClaimed): void {}
 
-export function handleTokenStaked(event: TokenStaked): void {
+export function handleTokenStaked(event: TokenStaked, block: EthereumBlock): void {
   let entity = Position.load(event.params.tokenId.toHex());
   if (entity != null) {
+    let id = block.hash.toHex()
+    let blockEntity = new Block(id);
     entity.staked = true;
     entity.liquidity = event.params.liquidity;
     entity.state="Staked";
     entity.incentiveId = event.params.incentiveId;
-    entity.timestamp = event.block.timestamp;
+    entity.timestamp = block.timestamp;
     entity.save();
   }
 }
