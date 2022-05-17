@@ -1,4 +1,4 @@
-import { ethereum, crypto } from '@graphprotocol/graph-ts';
+import { ethereum, crypto, EthereumBlock } from '@graphprotocol/graph-ts';
 import {
   DepositTransferred,
   IncentiveCreated,
