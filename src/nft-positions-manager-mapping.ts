@@ -44,7 +44,7 @@ export function handleApproval(event: Approval): void {
   let entity = Position.load(event.params.tokenId.toHex());
   if (entity != null) {
     entity.approved = event.params.approved;
-    if (event.params.approved == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+    if ((event.params.approved).toHex() == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
       entity.state="Approved";
     }
     entity.save();

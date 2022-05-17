@@ -18,4 +18,6 @@ type Position @entity {
   liquidity: BigInt!
   approved: Bytes
   state: String
+  incentiveId: Bytes
+  timestamp: BigInt!
 }

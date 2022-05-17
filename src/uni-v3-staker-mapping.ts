@@ -53,7 +53,9 @@ export function handleTokenStaked(event: TokenStaked): void {
   if (entity != null) {
     entity.staked = true;
     entity.liquidity = event.params.liquidity;
-    entity.state="Staked"
+    entity.state="Staked";
+    entity.incentiveId = event.params.incentiveId;
+    entity.timestamp = event.block.timestamp;
     entity.save();
   }
 }
@@ -63,6 +65,8 @@ export function handleTokenUnstaked(event: TokenUnstaked): void {
   if (entity != null) {
     entity.staked = false;
     entity.state="Deposited"
+    entity.incentiveId = null;
+    entity.timestamp = null;
     entity.save();
   }
 }
@@ -72,11 +76,11 @@ export function handleDepositTransferred(event: DepositTransferred): void {
   if (entity != null) {
     entity.oldOwner = event.params.oldOwner;
     entity.owner = event.params.newOwner;
-    if (event.params.newOwner=="0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
-      event.state="Deposited"
+    if (event.params.newOwner.toHex()=="0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+      entity.state="Deposited"
     }
-    if (event.params.oldOwner == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
-      event.state=""
+    if (event.params.oldOwner.toHex() == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+      entity.state=""
     }
     entity.save();
   }
