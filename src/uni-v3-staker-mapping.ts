@@ -80,9 +80,9 @@ export function handleDepositTransferred(event: DepositTransferred): void {
     entity.owner = event.params.newOwner;
     if (event.params.newOwner.toHex()=="0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
       entity.state="Deposited"
-    }
-    if (event.params.oldOwner.toHex() == "0x80b7859967d0e40a0cb87560ea120dcb93c56230") {
+    } else {
       entity.state=""
+      entity.owner = event.params.oldOwner
     }
     entity.save();
   }
